@@ -1,0 +1,24 @@
+/* side tab toolbar buttons */
+.tabs-left :is(.sync-and-trash-container, .subcontainer-lock) {right: -31.8px; padding: 15px 5px 15px 0; border-radius: 0px 32px 32px 0px; box-shadow: 3px -2px 3px #0001, 3px 2px 3px #0001, inset -0.6px 1px #0002, inset -0.6px -1px #0002;}
+.tabs-right :is(.sync-and-trash-container, .subcontainer-lock) {left: -31.8px; padding: 15px 0 15px 5px; border-radius: 32px 0px 0px 32px; box-shadow: -3px -2px 3px #0001, -3px 2px 3px #0001, inset 0.6px 1px #0002, inset 0.6px -1px #0002;}
+#browser:is(.tabs-left, .tabs-right) :is(.sync-and-trash-container, .subcontainer-lock) {position: absolute; bottom: 2.5px; background-color: inherit; min-height: 62px; height: fit-content; max-width: unset !important; align-content: center; flex-direction: column; z-index:-1; transition: filter .15s !important;}
+#browser:is(.tabs-left, .tabs-right) .sync-and-trash-container {top:0; margin: auto 0;} /* optional: centered sync & trash container */
+#browser:is(.tabs-left, .tabs-right).color-behind-tabs-off .sync-and-trash-container {background-color: var(--colorTabBar, var(--colorBg));}
+#browser:is(.tabs-left, .tabs-right).color-behind-tabs-on .sync-and-trash-container {background-color: var(--colorTabBar, var(--colorAccentBg));}
+#browser:is(.tabs-left, .tabs-right) :is(.sync-and-trash-container, .subcontainer-lock):hover {filter: brightness(1.08) !important;}
+#browser:is(.tabs-left, .tabs-right) :is(.sync-and-trash-container, .subcontainer-lock) button:not(.disabled):hover {transform:scale(1.2); border-radius: 16px; transition: .12s ease-in-out !important;}
+#browser:is(.tabs-left, .tabs-right) :is(.sync-and-trash-container, .subcontainer-lock) > :is(.toggle-trash, .tabs-unlocked, .tabs-locked):only-child > button {height: 56px; margin: -15px 0;} /* optional: single large button */
+#browser:is(.tabs-left, .tabs-right) :is(.sync-and-trash-container, .subcontainer-lock) > :is(.toggle-trash, .tabs-unlocked, .tabs-locked) {order: -1;} /* optional: keep trashcan button at top */
+#browser:is(.tabs-left, .tabs-right) .sync-and-trash-container > .synced-tabs-button {order: 2;} /* optional: keep sync icon at bottom */
+#tabs-tabbar-container:not(:focus-within):not(:hover) :is(.sync-and-trash-container, .sync-and-trash-container, .subcontainer-lock) {visibility: hidden; transition: visibility 0s .5s, background-color 0s .5s !important;} /* optional: hide when not needed */
+.substrip-tabs-on #tabs-tabbar-container:is(.left, .right):is(:focus-within, :hover) > div:is(:focus-within, :hover) {z-index:3;}
+
+/* Remove tab mute icon */
+#tabs-container .tab.tab-small.audio-on .tab-audio,
+#tabs-container .tab.pinned.audio-on .tab-audio,
+#tabs-container .tab.tab-small.audio-muted .tab-audio,
+#tabs-container .tab.pinned.audio-muted .tab-audio,
+#tabs-container .tab.tab-small.tab-captured .tab-audio,
+#tabs-container .tab.pinned.tab-captured .tab-audio {
+    display: none !important;
+}

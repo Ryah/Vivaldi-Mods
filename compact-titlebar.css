@@ -1,0 +1,104 @@
+/* Normal combined Header & Mainbar */
+.address-top:not(.native):not(.tabs-top):not(:has(.toolbar-editor)) #header {
+	min-height: 34px;
+	cursor: move !important;
+}
+
+/* normal compact mainbar */
+.address-top:not(.native):not(.tabs-top):not(:has(.toolbar-editor)) .mainbar > .toolbar-mainbar {
+	position: fixed;
+	inset: 0 36px 0 23px;
+}
+
+.address-top:not(.native):not(.tabs-top):not(:has(.toolbar-editor)) .mainbar > .toolbar-mainbar::before {
+	width: 100vw;
+	transform: translateX(-21px);
+}
+
+/* normal compact window buttons */
+.address-top:not(.is-settingspage) .window-buttongroup {
+	flex-flow: column wrap;
+	right: 0 !important;
+	border-radius: 0 0 0 3px !important;
+	overflow: hidden;
+	height: 20px;
+	z-index: 99 !important;
+	transition: height .2s steps(3, jump-none) .25s !important;
+}
+
+.address-top:not(.is-settingspage) .window-buttongroup:hover {
+	height: 60px;
+	transition: height .2s steps(3, jump-none) 0s !important;
+}
+
+.address-top:not(.is-settingspage) .window-buttongroup button {
+	width: 34px !important;
+	min-height: 20px;
+	margin: 0 !important;
+    height: 0px !important;
+}
+
+.address-top:not(.is-settingspage) .window-buttongroup .window-minimize {
+	order: -2;
+	background-image: radial-gradient(skyblue, lightblue);
+}
+
+.address-top:not(.is-settingspage) .window-buttongroup .window-maximize {
+    order: -1;
+	background-image: radial-gradient(circle, gainsboro, beige 55%);
+}
+
+.address-top:not(.is-settingspage) .window-buttongroup button:is(.window-minimize, .window-maximize):not(:hover) svg {
+	fill: black;
+}
+
+.address-top:not(.is-settingspage) .window-buttongroup .window-close {
+	order: -3;
+}
+
+/* window buttons' popup */
+.address-top:not(.native):not(.is-settingspage) .window-buttongroup button:hover::after {
+	border-radius: 3px;
+	padding: 1px 6px;
+	position: fixed;
+	right: 37px;
+	pointer-events: none;
+}
+
+.address-top:not(.native):not(.is-settingspage) .window-buttongroup .window-minimize:hover::after {
+	content: "Minimize";
+	background: aliceblue;
+	color: darkblue;
+}
+
+.address-top:not(.native):not(.is-settingspage) .window-buttongroup .window-maximize:hover::after {
+	content: "Maximize";
+	background: beige;
+	color: gray;
+}
+
+.address-top:not(.native):not(.is-settingspage) .window-buttongroup .window-close:hover::after {
+	content: "Close";
+	background: mistyrose;
+	color: firebrick;
+}
+
+.vivaldi:is(:hover, :active)>.vivaldi-v {
+	fill: crimson;
+	background: radial-gradient(circle, white 40%, transparent 40%);
+}
+
+/* popup menubar */
+#browser:not(.native):not(.is-settingspage):not(.tabs-top) .topmenu {
+	height: 0;
+	width: 100%;
+	overflow: visible;
+}
+
+#browser:not(.native):not(.is-settingspage):not(.tabs-top).maximized .topmenu .vivaldi-horizontal-icon {
+	display: none;
+} 
+
+button.vivaldi {
+    display: none !important;
+}

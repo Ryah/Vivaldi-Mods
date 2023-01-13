@@ -1,0 +1,43 @@
+/* Minimalist find bar */
+.find-in-page {position:fixed; z-index:3; bottom:0; left:118px; right:0; justify-content: left; max-width: 382px; margin: auto; background: transparent;}
+.find-in-page .fip-input-label {display:none;}
+/* findbox */
+.find-in-page:not(.fip-nomatches) .fip-input-container > * {color: TURQUOISE; font-weight: 500; text-shadow: 0px 0px 4px black, 1px 1px 1px black;} 
+.find-in-page:not(.fip-nomatches) .fip-input-container:is(:hover, :focus-within) > * {color: CYAN;} 
+.find-in-page:not(.fip-nomatches) input[type="search"] {box-shadow: 0 1px #ffd70099; background: linear-gradient(55deg, rgba(0,0,0,.2), rgba(0,0,0,.05)); border-radius: var(--radius) var(--radius) 0 0; border: none; outline: none; backdrop-filter: blur(2px);}
+.find-in-page:not(.fip-nomatches) input[type="search"]:focus-within {box-shadow: 0 -1px CYAN inset, 0 1px #ffbe00;}
+.find-in-page:not(.fip-nomatches) .fip-input-container > input[type=search]::-webkit-search-cancel-button {filter: sepia(98%) saturate(270%) hue-rotate(102deg) brightness(103%) contrast(106%) opacity(70%) drop-shadow(1px 0 1.5px #0009);} /* optional: turquoise clear button */
+/* nomatch alert */
+.find-in-page.fip-nomatches .fip-input-container > input {font-weight: 500; color: maroon; background-color: #ffbbffD9; box-shadow: 0 0 4px pink inset, 0 0 0 .6px magenta inset; border: none; outline: none; backdrop-filter: blur(2px); transition-delay: .1s !important;}
+.find-in-page.fip-nomatches:not(:hover):not(:focus-within) .fip-input-container > input {color: mediumviolet; background: linear-gradient(55deg, #ffbbff80, #ffbbff33); box-shadow:none; transition-delay: .1s !important;}
+.find-in-page.fip-nomatches .fip-input-container > input[type=search]::-webkit-search-cancel-button {filter: invert(45%) sepia(25%) saturate(5900%) hue-rotate(311deg) brightness(100%) contrast(65%) drop-shadow(.5px .5px .6px pink); transition-delay: .1s !important;} 
+.find-in-page.fip-nomatches:focus-within .fip-input-container > input {animation: shake 1s steps(2) .15s 2 !important;}
+@keyframes shake {9% {transform:translateX(0);} 1%, 5% {transform:translateX(-4px);} 3%, 7% {transform:translateX(5px);}}
+/* autohide buttons */
+.find-in-page > :nth-last-child(-n+3) > * {opacity:0; outline: none; backdrop-filter: blur(2px); transition: opacity .13s ease-out !important;}
+.find-in-page:is(:hover, :focus-within) > :nth-last-child(-n+3) > * {opacity:1;}
+/* arrow buttons */
+.find-in-page > .toolbar-group button {background:transparent !important; border:none !important; box-shadow:none !important; filter: drop-shadow(.5px .5px maroon) drop-shadow(1px 1px 1px #000D);}
+.find-in-page > .toolbar-group button > span {fill: TURQUOISE; transform:rotate(90deg);}
+.find-in-page > .toolbar-group button:is(:hover, :focus-within) svg {fill: CYAN; transform: scale(1.3);}
+/* close button */
+.find-in-page button[title='Cancel search'] {fill: TURQUOISE; background:transparent !important; border:none !important;}
+.find-in-page button[title='Cancel search']:not(:hover):not(:focus-within) > span {filter: drop-shadow(.6px .6px maroon) drop-shadow(1px 1px 1px #000D);}
+.find-in-page button[title='Cancel search']:is(:hover, :focus-within) {fill: red; box-shadow: 0 0 0 1.7px red inset; filter: drop-shadow(.5px .5px maroon) drop-shadow(.8px .8px .9px #000D); transition: box-shadow .12s !important;}
+/.find-in-page > .toolbar-group {display: flex; order:1;} /* optional: reorder close button closer to findbox */
+/* check-box */
+.find-in-page label > input[type=checkbox] {background:transparent !important; border:none !important; box-shadow: 0 0 0 1.7px TURQUOISE inset !important; filter: drop-shadow(.5px .5px maroon) drop-shadow(.8px .8px 1px #000D);}
+.find-in-page label:is(:hover, :focus-within) > input[type=checkbox] {box-shadow: 0 0 0 1.7px CYAN inset !important;}
+/* match text */
+.find-in-page .fip-checkbox-label {color: CYAN; font-size: 85%; padding-right: 4px; margin-left: -48px; transform: translateX(50px); background-color:transparent; text-shadow: 0 0, 1px 1px 1px maroon, 1px 1px 2px #000D, 1px 1px 3px #000D, 1px 1px 4px #000D; transition: .13s !important;}
+.find-in-page label:not(:hover) > input[type=checkbox]:not(:focus-visible) ~ .fip-checkbox-label {font-size:0;}
+.find-in-page:not(:hover):not(:focus-within) label > input[type=checkbox]:checked ~ .fip-checkbox-label {opacity:1; font-size: 85% !important; margin-left: -140px;}
+/* automate find box during small window */
+@media only screen and (max-width: 600px) {
+.find-in-page .fip-checkbox-label {margin-left:0; transform: translateX(0);}
+.find-in-page:not(:hover):not(:focus-within) label > input[type=checkbox]:checked ~ .fip-checkbox-label {margin-left: -95px;}
+}
+/* enter & exit animation */
+.find-in-page.find-in-page-enter {transform: scaleX(0); transition: transform 150ms ease-out, opacity 100ms ease-out !important;}
+.find-in-page.find-in-page-enter-active {transform: scaleX(1);}
+.find-in-page.find-in-page-exit-active {transform: scaleX(0); transition: transform 150ms ease-in, opacity 150ms ease-in !important;}

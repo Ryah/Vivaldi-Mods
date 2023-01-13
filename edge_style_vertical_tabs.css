@@ -1,0 +1,261 @@
+#tabs-tabbar-container:is(.left, .right) {
+    position: fixed;
+     height: -webkit-fill-available !important;
+     box-shadow: #0008 0 0 2px, rgb(0 0 0 / 25%) 0px 3px 6px;
+     clip-path:inset(0 -50px 0 -50px);
+     transition: .15s ease-out .1s !important;
+     color: var(--colorFg) !important;
+     background-color: var(--colorBg);
+}
+
+ #tabs-tabbar-container.left {
+    left:0;
+     z-index:1;
+}
+
+ #panels-container.left ~ div > #tabs-tabbar-container.left {
+    left: unset;
+}
+
+ #tabs-tabbar-container.right {
+    right:0;
+}
+
+ #panels-container.right ~ #tabs-tabbar-container.right {
+    right:35px;
+}
+
+ #tabs-tabbar-container.left:not(:focus-within):not(:hover) {
+    will-change: clip-path;
+     clip-path:inset(0% calc(100% - 35px) 0% 0%);
+     transition: .15s ease-out .5s !important;
+     background-color: var(--colorBg);
+}
+
+ #tabs-tabbar-container.right:not(:focus-within):not(:hover) {
+    will-change: transform;
+     transform: translateX(calc(100% - 35px));
+     transition: .15s ease-out .5s !important;
+}
+
+ #tabs-tabbar-container:is(.left, .right):not(:focus-within):not(:hover) > div.overflow .tab-strip {
+    animation: ofh 0s .5s forwards !important;
+}
+
+ @keyframes ofh {
+    to {
+        overflow-y: hidden;
+    }
+}
+
+ #tabs-tabbar-container:is(.left, .right) .newtab {
+    left: 0 !important;
+    top: 0 !important;
+     width: 100%;
+     transition: width .1s .1s !important;
+}
+
+ #tabs-tabbar-container:is(.left, .right):not(:focus-within):not(:hover) .newtab {
+    left: 0 !important;
+    width: 30px;
+    top: 0 !important;
+     transition: width 0s .5s !important;
+}
+
+ #browser:not(.fullscreen).tabs-left #webview-container {
+    margin-left:30px;
+}
+
+ #browser:not(.fullscreen).tabs-right #webview-container {
+    margin-right:30px;
+}
+
+ #tabs-tabbar-container:is(.left, .right):not(:focus-within):not(:hover) {
+    flex-direction: row;
+}
+
+ #main > .inner > div:has(#tabs-tabbar-container.left) {
+    max-width: 0px;
+}
+
+ #browser:has(footer > .toolbar-statusbar) #tabs-tabbar-container {
+    margin-bottom: 24px;
+}
+
+/* Styling */
+.toolbar-tabbar .newtab > button {
+    width: 100%;
+}
+
+.toolbar-tabbar .newtab > button::hover {
+    cursor: pointer;
+}
+.toolbar-tabbar .newtab > button svg {
+    height: 30px;
+    width: 30px;
+}
+
+#tabs-container:hover .toolbar-tabbar .newtab > button::after {
+    content: "New Tab";
+    /* display: inline-block; */
+    width: 100%;
+    top: 0px !important;
+    /* margin-top: 0px; */
+    /* padding-left: 5px; */
+}
+
+#tabs-container.left .tab-strip{
+    background-color: var(--colorBgDarker) !important;
+}
+
+#tabs-container {
+    border-color: var(--colorBgDarker) !important;
+    border-width: 1px;
+    z-index: 99999999 !important;
+}
+
+.tab-position .tab:hover {
+    background-color: var(--colorBgLighter) !important;
+    color: inherit !important;
+}
+.tab-position .tab.active {
+    background-color: var(--colorBgLighter) !important;
+    color: var(--colorFg) !important;
+    border: 1px solid var(--colorBgDarker) !important;
+    box-shadow: 0px 5px 10px var(--colorBgDarker) !important;
+}
+
+#browser:not(.ui-transparent-tabs) .tab-position .tab:hover:not(.active) {
+    background-color: var(--colorBgDarker);
+}
+
+.topmenu .menubar.horizontal {
+    background: var(--colorBg);
+    z-index: 99999 !important;
+}
+.tabs-left.application-icon {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: var(--colorBg);
+    padding: 14px;
+    padding-top: 6px;
+}
+
+.tab-position .tab .tab-selection {
+    position: absolute;
+    pointer-events: none;
+    border-radius: var(--radiusHalf);
+    top: 0px;
+    z-index: 999999;
+    left: 0px;
+}
+
+.svg-tab-selection {
+    margin-top: -5px;
+    margin-left: -5px;
+}
+
+
+
+.tab-position {
+    /* position: absolute; */
+    /* max-height: 100%; */
+    max-width: 100%;
+    /* width: 100% !important; */
+    display: flex;
+    height: auto !important;
+    position: relative !important;
+    overflow: visible !important;
+    top: auto !important;
+    margin-bottom: 30px;
+    transform: none !important;
+}
+
+.tab-position .tab {
+    max-height: 100%;
+    /* max-width: 100%; */
+    display: flex;
+    padding: 5px !important;
+    border: 1px solid transparent !important;
+    border-radius: calc(var(--radius)) !important;
+    height: auto !important;
+    position: relative !important;
+    /* overflow: visible !important; */
+    /* margin: inherit !important; */
+    margin-bottom: -24px !important;
+    font-size: 13px;
+    background: none !important;
+}
+
+#browser:not(.ui-transparent-tabs) .tab-position .tab:hover:not(.active) {
+    background-color: var(--colorBgDarker);
+}
+
+
+.tab-position .tab .tab-header {
+    padding: 0 !important;
+    flex: none !Important;
+}
+
+.tab-position .tab .favicon {
+    pointer-events: none;
+    flex: 0 0 18px;
+    border-radius: var(--radiusRounded);
+    min-width: 20px;
+    padding: 1px;
+    filter: unset;
+    color: var(--colorFg);
+    text-align: center;
+}
+
+.tab-position .tab .favicon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.theme-dark .tab-position .tab.active .tab-header .favicon:not(.svg) {
+    filter: none !important;
+}
+
+
+.tab-position .tab .title {
+    -webkit-mask-image: -webkit-linear-gradient(180deg, transparent 0, var(--colorBg) 25px);
+    -webkit-mask-position: right;
+    margin-top: -2px;
+    padding-left: 8px;
+}
+
+.tab-strip .tab-position-of-type {
+    margin-bottom: 40px;
+}
+
+#browser:not(.alt-tabs) #tabs-container .close {
+    margin-right: 6px;
+    margin: 0;
+    margin-top: 1px;
+}
+
+.tab-position .tab .close svg {
+    margin: auto;
+    color: var(--colorFgFadedMost);
+}
+
+.tab-position .tab .close svg:hover {
+    color: var(--colorFg);
+}
+
+.tab-position .tab .close {
+    display: flex;
+    background: none;
+}
+
+.tab-audio {
+    left: 4px !important;
+    transform: scale(0.45) !important;
+    bottom: -2px;
+}
+
+#browser:not(.alt-tabs) #tabs-container .tab:not(.pinned):not(.tab-small).audio-on .favicon, #browser:not(.alt-tabs) #tabs-container .tab:not(.pinned):not(.tab-small).audio-muted .favicon, #browser:not(.alt-tabs) #tabs-container .tab:not(.pinned):not(.tab-small).tab-captured .favicon {
+    transform: none !important;
+}
